@@ -1,0 +1,7 @@
+exports.run_server = -> 
+  {
+    "ignore": ["node_module"], 
+    "watch": ["src/*"],
+    "ext": "js, coffee"
+  }
+
