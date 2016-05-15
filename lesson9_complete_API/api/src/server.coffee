@@ -17,7 +17,9 @@ server.register [
 class Post extends BaseModel
   source: db
   props:
-    titel: on
+    title: on
+    body: on
+    author: on
   PREFIX : 'post'
  
 server.route
@@ -28,6 +30,15 @@ server.route
     Post.get(key)
       .then (post) ->
         reply post.doc
+
+server.route
+  method: 'POST'
+  path: '/posts'
+  handler: (request, reply) ->
+    post = new Post request.payload
+    post.create(true)
+      .then (post) ->
+        reply post
 
 server.start (err) ->
   throw err if err
