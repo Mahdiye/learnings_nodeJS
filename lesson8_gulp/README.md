@@ -7,14 +7,14 @@ this story is an example of working with gulp to start or build your project aut
 
 ## Installation
 - download all packages
-  $npm install
+  $ npm install
 
 ## Features
 - start project automatically
   $gulp start
 
 -  build priject in JS format
-  $gulp build
+  $ gulp build
 
 
 
