@@ -24,10 +24,13 @@
   "homepage": "https://github.com/Mahdiye/learnings_nodeJS#readme",
   "dependencies": {
     "coffee-script": "^1.10.0",
+    "couchbase": "^2.1.6",
     "hapi": "^13.4.0",
     "inert": "^4.0.0",
     "joi": "^8.1.0",
     "lout": "^9.0.0",
+    "odme": "^1.1.2",
+    "puffer": "^1.1.0",
     "vision": "^4.1.0"
   },
   "devDependencies": {
