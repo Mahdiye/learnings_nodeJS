@@ -1,7 +1,7 @@
 Hapi = require 'hapi'
 couchbase = require 'couchbase'
 BaseModel = require('odme').CB
-db= new require('puffer') {host: 'localhost', name:'post'}
+db= new require('puffer') {host: 'localhost', name:'posts'}
 
 server = new Hapi.Server()
 server.connection
@@ -37,6 +37,15 @@ server.route
   handler: (request, reply) ->
     post = new Post request.payload
     post.create(true)
+      .then (post) ->
+        reply post
+
+server.route
+  method: 'DELETE'
+  path: '/posts/{post_key}'
+  handler: (request, reply) ->
+    key = request.params.post_key
+    Post.remove(key)
       .then (post) ->
         reply post
 
