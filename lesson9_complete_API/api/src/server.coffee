@@ -49,6 +49,17 @@ server.route
       .then (post) ->
         reply post
 
+server.route
+  method: 'PUT'
+  path: '/posts/{post_key}'
+  handler: (request, reply) ->
+    key = request.params.post_key
+    post = new Post key, request.payload
+    post.update(true)
+      .then (post) ->
+        reply post
+
+
 server.start (err) ->
   throw err if err
   console.log 'server start at: ', server.info.uri
