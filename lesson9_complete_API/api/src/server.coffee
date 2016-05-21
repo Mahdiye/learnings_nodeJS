@@ -1,7 +1,15 @@
 Hapi = require 'hapi'
-couchbase = require 'couchbase'
+_ = require 'lodash'
+
+#couchbase = require 'couchbase'
+
 BaseModel = require('odme').CB
 db= new require('puffer') {host: 'localhost', name:'posts'}
+
+elasticsearch = require 'elasticsearch'
+client = new elasticsearch.Client
+  host: 'localhost:9200',
+  log: 'trace'
 
 server = new Hapi.Server()
 server.connection
@@ -41,13 +49,17 @@ server.route
         reply post
 
 server.route
-  method: 'DELETE'
-  path: '/posts/{post_key}'
+  method: 'GET'
+  path: '/posts'
   handler: (request, reply) ->
-    key = request.params.post_key
-    Post.remove(key)
-      .then (post) ->
-        reply post
+    client.search
+      index: 'posts'
+      type: 'post'
+    .then (result) ->
+      keys = _.map(result.hits.hits, '_source.doc.doc_key')
+      Post.find(keys)
+      .then (blogs) ->
+        reply blogs
 
 server.route
   method: 'PUT'
@@ -58,7 +70,6 @@ server.route
     post.update(true)
       .then (post) ->
         reply post
-
 
 server.start (err) ->
   throw err if err
