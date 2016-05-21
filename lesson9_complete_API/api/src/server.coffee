@@ -1,8 +1,6 @@
 Hapi = require 'hapi'
 _ = require 'lodash'
 
-#couchbase = require 'couchbase'
-
 BaseModel = require('odme').CB
 db= new require('puffer') {host: 'localhost', name:'posts'}
 
