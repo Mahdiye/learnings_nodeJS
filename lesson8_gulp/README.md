@@ -13,5 +13,5 @@ this story is an example of working with gulp to start or build your project aut
 - start project automatically
   $gulp start
 
--  build priject in JS format
+-  build project in JS format
   $ gulp build
