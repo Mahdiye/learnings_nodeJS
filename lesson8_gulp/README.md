@@ -17,6 +17,3 @@ this story is an example of working with gulp to start or build your project aut
   $ gulp build
 
 
-
-
-
