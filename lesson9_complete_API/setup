@@ -1,0 +1,14 @@
+#POST /login
+{
+  "mappings": {
+    "post": {
+      "_source": {
+        "includes": [
+          "doc.title",
+          "doc.doc_key",
+          "doc.doc_type"
+        ]
+      }
+    }
+  }
+}
