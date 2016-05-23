@@ -1,0 +1,29 @@
+{
+  "name": "lesson10_hapi-auth-cookie",
+  "version": "1.0.0",
+  "description": "hapi Cookie authentication ",
+  "main": "auth.coffee",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mahdiye/learnings_nodeJS.git"
+  },
+  "keywords": [
+    "hapi",
+    "auth",
+    "cookie",
+    "example"
+  ],
+  "author": "Mahdieh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mahdiye/learnings_nodeJS/issues"
+  },
+  "homepage": "https://github.com/Mahdiye/learnings_nodeJS#readme",
+  "dependencies": {
+    "hapi": "^13.4.1",
+    "hapi-auth-cookie": "^6.1.1"
+  }
+}
