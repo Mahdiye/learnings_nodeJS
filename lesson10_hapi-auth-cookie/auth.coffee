@@ -66,7 +66,6 @@ server.register(require('hapi-auth-cookie'), (err) =>
   cache = server.cache({ segment: 'sessions', expiresIn: 3 * 24 * 60 * 60 * 1000 });
   server.app.cache = cache;
 
-
   server.auth.strategy 'session', 'cookie', true, 
     password: 'password-should-be-32-characters'
     cookie: 'sid-example'
@@ -108,7 +107,6 @@ server.register(require('hapi-auth-cookie'), (err) =>
         plugins:
           'hapi-auth-cookie': { redirectTo: false }
     }
-
   ])
 
   server.start ->
