@@ -36,7 +36,7 @@ server.register(require('hapi-auth-cookie'), (err) =>
 
         return callback(null, true, cached.account)
       )
-  )
+)
 
 server.route Route()
 server.start ->
