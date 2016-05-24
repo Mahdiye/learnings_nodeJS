@@ -59,6 +59,10 @@ ping_pong = (request, reply ) ->
     reply 'pong'
   else reply "I will say pong if login"
 
+logout = (request, reply) -> 
+  request.cookieAuth.clear()
+  return reply.redirect('/')
+
 server = new Hapi.Server()
 
 server.connection
@@ -121,6 +125,13 @@ server.register(require('hapi-auth-cookie'), (err) =>
         plugins:
           'hapi-auth-cookie': { redirectTo: false }
     }
+    {
+      method: 'GET'
+      path: '/logout'
+      config:
+        handler: logout 
+    }
+
   ])
 
   server.start ->
