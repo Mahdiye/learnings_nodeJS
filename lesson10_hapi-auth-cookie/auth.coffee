@@ -50,6 +50,10 @@ login = (request, reply) ->
     return reply.redirect('/')
     )
 
+say_hello = (request, reply) ->
+  if request.auth.isAuthenticated
+    reply "hello #{request.params.name}"
+
 server = new Hapi.Server()
 
 server.connection
@@ -96,6 +100,15 @@ server.register(require('hapi-auth-cookie'), (err) =>
         plugins:
           'hapi-auth-cookie': { redirectTo: false }
     }
+    {
+      method: 'GET'
+      path: '/hello/{name}'
+      config:
+        handler: say_hello
+        plugins:
+          'hapi-auth-cookie': { redirectTo: false }
+    }
+
   ])
 
   server.start ->
