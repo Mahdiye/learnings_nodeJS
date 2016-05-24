@@ -54,6 +54,11 @@ say_hello = (request, reply) ->
   if request.auth.isAuthenticated
     reply "hello #{request.params.name}"
 
+ping_pong = (request, reply ) ->
+  if request.auth.isAuthenticated
+    reply 'pong'
+  else reply "I will say pong if login"
+
 server = new Hapi.Server()
 
 server.connection
@@ -104,6 +109,15 @@ server.register(require('hapi-auth-cookie'), (err) =>
       path: '/hello/{name}'
       config:
         handler: say_hello
+        plugins:
+          'hapi-auth-cookie': { redirectTo: false }
+    }
+    {
+      method: 'GET'
+      path: '/ping'
+      config:
+        auth: { mode: 'try' }
+        handler: ping_pong
         plugins:
           'hapi-auth-cookie': { redirectTo: false }
     }
