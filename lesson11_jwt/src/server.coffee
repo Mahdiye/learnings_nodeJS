@@ -1,17 +1,6 @@
 Hapi = require 'hapi'
 Route = require('./route.coffee')()
-JWT = require 'jsonwebtoken' #used to sign our content
-
 Secret = require('../secret.coffee').secret
-
-people =
-  1:
-    id: 1
-    name: 'admin'
-
-#use the token as the 'authorization' header in requests
-token = JWT.sign(people[1], Secret) #synchronous
-console.log 'token': token
 
 server = new Hapi.Server()
 
