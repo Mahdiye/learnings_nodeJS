@@ -1,0 +1,41 @@
+{
+  "name": "lesson11_jwt",
+  "version": "1.0.0",
+  "description": "learn jwt based authentication",
+  "main": "src/server",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mahdiye/learnings_nodeJS.git"
+  },
+  "keywords": [
+    "jwt",
+    "authentication"
+  ],
+  "author": "Mahdieh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mahdiye/learnings_nodeJS/issues"
+  },
+  "homepage": "https://github.com/Mahdiye/learnings_nodeJS#readme",
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "hapi": "^13.4.1",
+    "hapi-auth-jwt2": "^7.0.0",
+    "inert": "^4.0.0",
+    "joi": "^8.1.1",
+    "jsonwebtoken": "^7.0.0",
+    "lout": "^9.0.0",
+    "odme": "^1.1.2",
+    "puffer": "^1.1.0",
+    "vision": "^4.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-coffee": "^2.3.2",
+    "gulp-nodemon": "^2.0.7",
+    "gulp-util": "^3.0.7"
+  }
+}
