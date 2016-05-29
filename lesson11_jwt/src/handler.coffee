@@ -10,8 +10,7 @@ module.exports = ->
       user.create(true)
       .then (users) ->
         #use the token as the 'authorization' header in requests
-        token = JWT.sign('payload', Secret) #synchronous
+        token = JWT.sign(users, Secret) #synchronous
         console.log 'token': token
         reply users
-     
   }
