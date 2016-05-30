@@ -15,9 +15,12 @@ module.exports = ->
         console.log 'token': token
 
     login: (request, reply) ->
-      reply 'enter email: m.hosseinyzade@gmail.com and password: 1234' unless request.payload.email is 'm.hosseinyzade@gmail.com' and request.payload.password is '1234'
+      User.get(request.params.key)
+      .then (user) ->
+        if (request.payload.email isnt user.doc.email) or (request.payload.password isnt user.doc.password)
+          reply "enter email: #{user.doc.email} and password: #{user.doc.password}"
 
-      if request.payload.email is 'm.hosseinyzade@gmail.com' and request.payload.password is '1234'
-        reply 'You are logged in'
-          .header("Authorization", request.headers.authorization)
+        else if request.payload.email is user.doc.email and request.payload.password is user.doc.password
+          reply 'You are logged in'
+            .header("Authorization", request.headers.authorization)
   }
