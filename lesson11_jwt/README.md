@@ -6,13 +6,14 @@
 
 - install nodemon globally
   $npm instal nodemon -g
+- database : couchbase
 
 ## Installation
 - download all packages
   $ npm install
 
 ## Run 
-- first : $cp secret.coffee.origin secret.coffee , and you can have your own secret key
+- first : $cp secret.coffee.origin secret.coffee , and you can have your own secret key and also create a bucket in couchbase named "lesson11"
 - start project automatically
   $gulp start
 
@@ -21,4 +22,12 @@
 
 ## Features 
  -POST http://localhost:3100/signup : User can register with their email, password, fullname, dob, weight and height.
- -POST http://localhost:3100/login/{key} : Each user can with email and password
+ post this user :
+{
+  "email": "m.hosseinyzade@gmail.com",
+  "password": "1234",
+  "fullname": "Mahdieh",
+  "weight": "53",
+  "height": "167",
+}
+ -POST http://localhost:3100/login/{key} : user can login with email and password via payload and set Authorization: 'Your Token' in header.

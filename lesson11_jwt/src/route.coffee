@@ -7,5 +7,12 @@ module.exports = ->
       config:
         auth: false
         handler: Handler.signup
+    },
+    {
+      method: 'POST'
+      path: '/login/{key}'
+      config:
+        auth: 'jwt'
+        handler: Handler.login
     }
   ]

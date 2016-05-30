@@ -1,6 +1,11 @@
 Hapi = require 'hapi'
-Route = require('./route.coffee')()
-Secret = require('../secret.coffee').secret
+Route = require('./route')()
+Secret = require('../secret').secret
+
+user =
+  email : 'm.hosseinyzade@gmail.com'
+  password: 1234
+
 
 server = new Hapi.Server()
 
@@ -8,12 +13,11 @@ server.connection
   port: 3100
 
 server.register [
-  require 'vision'
-  require 'inert'
-  register: require 'lout'
-], (err) -> throw err if err
-
-server.register require('hapi-auth-jwt2'), (err) ->
+  { register: require 'vision' }
+  { register: require 'inert' }
+  { register: require 'lout' }
+  { register: require 'hapi-auth-jwt2' }
+], (err) ->
   throw err if err
 
   server.auth.strategy 'jwt', 'jwt',
@@ -26,12 +30,13 @@ server.register require('hapi-auth-jwt2'), (err) ->
       console.log(" - - - - - - - user agent:")
       console.log(request.headers['user-agent'])
 
-      if (!people[decoded.id])
+      if (decoded.email isnt user.email and decoded.password isnt user.password)
         return callback(null, false)
       else
         return callback(null, true)
 
-    verifyOptions: { algorithms: [ 'HS256' ] } #pick a strong algorithm 
+    verifyOptions:
+      ignoreExpiration: true
 
   server.auth.default 'jwt'
 

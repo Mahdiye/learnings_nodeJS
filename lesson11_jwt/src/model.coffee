@@ -1,8 +1,8 @@
 module.exports = ->
   BaseModel = require('odme').CB
-  db= new require('puffer') {host: 'localhost', name:'users'}
+  db= new require('puffer') {host: 'localhost', name:'lesson11'}
 
-  class Users extends BaseModel
+  class User extends BaseModel
     source: db
     props:
       email: on
