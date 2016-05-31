@@ -22,12 +22,7 @@
 
 ## Features 
  -POST http://localhost:3100/signup : User can register with their email, password, fullname, dob, weight and height.
- post this user :
-{
-  "email": "m.hosseinyzade@gmail.com",
-  "password": "1234",
-  "fullname": "Mahdieh",
-  "weight": "53",
-  "height": "167",
-}
+
  -POST http://localhost:3100/login/{key} : user can login with email and password via payload and set Authorization: 'Your Token' in header.
+
+ -GET localhost:3100/me : will bring detail of user ,  and set Authorization: 'Your Token' in header.

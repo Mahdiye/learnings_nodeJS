@@ -26,7 +26,7 @@ server.register [
       console.log(" - - - - - - - user agent:")
       console.log(request.headers['user-agent'])
 
-      User.get (request.params.key)
+      User.get (request.params.key or decoded.doc_key)
       .then (user) ->
         if (decoded.email isnt user.doc.email)
           return callback(null, false)

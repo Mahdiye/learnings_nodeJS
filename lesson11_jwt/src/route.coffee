@@ -15,4 +15,10 @@ module.exports = ->
         auth: 'jwt'
         handler: Handler.login
     }
+    {
+      method: 'GET'
+      path: '/me'
+      config:
+        handler: Handler.me
+    }
   ]
