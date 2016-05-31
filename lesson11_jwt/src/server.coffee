@@ -1,11 +1,7 @@
 Hapi = require 'hapi'
 Route = require('./route')()
 Secret = require('../secret').secret
-
-user =
-  email : 'm.hosseinyzade@gmail.com'
-  password: 1234
-
+User = require('./model.coffee')()
 
 server = new Hapi.Server()
 
@@ -30,10 +26,12 @@ server.register [
       console.log(" - - - - - - - user agent:")
       console.log(request.headers['user-agent'])
 
-      if (decoded.email isnt user.email and decoded.password isnt user.password)
-        return callback(null, false)
-      else
-        return callback(null, true)
+      User.get (request.params.key)
+      .then (user) ->
+        if (decoded.email isnt user.doc.email)
+          return callback(null, false)
+        else
+          return callback(null, true)
 
     verifyOptions:
       ignoreExpiration: true
