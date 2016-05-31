@@ -1,18 +1,24 @@
 User = require('./model.coffee')()
 JWT = require 'jsonwebtoken' #used to sign our content
 Secret = require('../secret').secret
-
+UUID = require 'node-uuid'
 
 module.exports = ->
+
   return {
     signup: (request, reply) ->
       user = new User request.payload
       user.create(true)
-      .then (users) ->
-        reply users
+      .then (user) ->
         #use the token as the 'authorization' header in requests
-        token = JWT.sign(users, Secret) #synchronous
+        verification =
+          valid: true
+          id: UUID.v4()
+          exp: new Date().getTime() + 30 * 60 * 1000 #expires in 30 minutes time
+          email: user.email
+        token = JWT.sign(verification, Secret) #synchronous
         console.log 'token': token
+        reply user
 
     login: (request, reply) ->
       User.get(request.params.key)
