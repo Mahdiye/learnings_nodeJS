@@ -26,3 +26,6 @@
  -POST http://localhost:3100/login/{key} : user can login with email and password via payload and set Authorization: 'Your Token' in header.
 
  -GET localhost:3100/me : will bring detail of user ,  and set Authorization: 'Your Token' in header.
+
+ -GET localhost:3100/feed: User can call GET /feed without being logged in which will return [ { card: ‘menu’ }, { card: ‘login’ } ]. For logged in user it should return [ { card: ‘menu’ }, { card: ‘profile’, name: current_logged_in_users_name } ]. (e.g. { card: ‘profile’, name: ‘Arash Kay’ } ] )
+

@@ -7,7 +7,7 @@ module.exports = ->
     props:
       email: on
       password: on
-      fullname: on
+      full_name: on
       dob: on
       weight: on
       height: on

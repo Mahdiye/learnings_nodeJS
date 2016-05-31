@@ -12,13 +12,22 @@ module.exports = ->
       method: 'POST'
       path: '/login/{key}'
       config:
-        auth: 'jwt'
+        auth:
+          mode: 'try'
         handler: Handler.login
-    }
+    },
     {
       method: 'GET'
       path: '/me'
       config:
         handler: Handler.me
-    }
+    },
+    {
+      method: 'GET'
+      path: '/feed'
+      config:
+        auth:
+          mode: 'optional'
+        handler: Handler.feed
+    },
   ]

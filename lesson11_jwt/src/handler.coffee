@@ -16,6 +16,7 @@ module.exports = ->
           id: UUID.v4()
           exp: new Date().getTime() + 30 * 60 * 1000 #expires in 30 minutes time
           email: user.email
+          full_name: user.full_name
           doc_key: user.doc_key
         token = JWT.sign(verification, Secret) #synchronous
         console.log 'token': token
@@ -35,5 +36,9 @@ module.exports = ->
       User.get( request.auth.credentials.doc_key )
       .then (me) ->
         reply me.doc
-        
+
+    feed: (request, reply) ->
+      if !request.auth.isAuthenticated
+        reply "[ { card: ‘menu’ }, { card: ‘login’ } ]"
+      else reply " [ { card: ‘menu’ }, { card: ‘profile’, name: #{request.auth.credentials.full_name} ]"
   }
