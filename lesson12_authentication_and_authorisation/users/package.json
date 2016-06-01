@@ -1,0 +1,29 @@
+{
+  "name": "lesson12_authentication_and_authorisation.users",
+  "version": "1.0.0",
+  "description": "user registratin system",
+  "main": "src/main.coffee",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mahdiye/learnings_nodeJS/tree/master/lesson12_authentication_and_authorisation"
+  },
+  "keywords": [
+    "authorisation",
+    "authentication",
+    "jwt",
+    "jwt2",
+    "hapi"
+  ],
+  "author": "Mahdieh, GeekHouse, <email: m.hosseinyzade@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "hapi": "^13.4.1",
+    "jsonwebtoken": "^7.0.0",
+    "node-uuid": "^1.4.7",
+    "odme": "^1.1.2"
+  }
+}

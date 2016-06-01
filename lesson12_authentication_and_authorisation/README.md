@@ -17,6 +17,8 @@ download devDependencies package
 - $ npm install gulp-util --save-dev
 - $ npm install gulp-nodemon --save-dev
 
+-in user directory run : $npm link 
+-in api run $npm link lesson12_authentication_and_authorisation.users
 
 ## Run 
 - create a bucket in couchbase named "lesson12"
