@@ -30,4 +30,10 @@ module.exports = ->
           mode: 'optional'
         handler: Handler.feed
     },
+    {
+      method: 'POST'
+      path: '/logout'
+      config:
+        handler: Handler.logout
+    }
   ]

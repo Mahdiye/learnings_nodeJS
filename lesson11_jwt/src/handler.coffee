@@ -41,4 +41,12 @@ module.exports = ->
       if !request.auth.isAuthenticated
         reply "[ { card: ‘menu’ }, { card: ‘login’ } ]"
       else reply " [ { card: ‘menu’ }, { card: ‘profile’, name: #{request.auth.credentials.full_name} ]"
+
+    logout: (request, reply) ->
+      token =  request.headers.authorization
+      decoded =  JWT.decode( token, Secret)
+      decoded.valid = false
+      decoded.exp = new Date().getTime()
+      reply 'you are logged out'
+      console.log decoded , "decoded after loghed out"
   }

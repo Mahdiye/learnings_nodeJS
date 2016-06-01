@@ -29,3 +29,4 @@
 
  -GET localhost:3100/feed: User can call GET /feed without being logged in which will return [ { card: ‘menu’ }, { card: ‘login’ } ]. For logged in user it should return [ { card: ‘menu’ }, { card: ‘profile’, name: current_logged_in_users_name } ]. (e.g. { card: ‘profile’, name: ‘Arash Kay’ } ] )
 
+- POST /logout will log out the user
