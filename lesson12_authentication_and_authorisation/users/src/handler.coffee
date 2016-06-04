@@ -25,3 +25,4 @@ module.exports = (server, options) ->
             token = JWT.sign(verification, Secret) #synchronous
             console.log 'token': token
             reply user
+  }

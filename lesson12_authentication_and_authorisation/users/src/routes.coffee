@@ -11,13 +11,5 @@ module.exports = (server, options) ->
         mode: 'try'
       validate: Validator.login
       handler: Handler.register
-    },
-    {
-      method: 'POST'
-      path: '/login/{key}'
-      config:
-        auth:
-          mode: 'try'
-        handler: Handler.login
     }
   ]
