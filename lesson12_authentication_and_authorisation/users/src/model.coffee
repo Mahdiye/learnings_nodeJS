@@ -17,7 +17,7 @@ module.exports = (server, options) ->
 
     PREFIX : 'u'
 
-    @registered : (email) ->
+    @get_by_email : (email) ->
       client.search
         index: 'lesson12'
         type: 'users'

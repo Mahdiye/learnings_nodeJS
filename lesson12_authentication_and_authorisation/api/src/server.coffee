@@ -26,14 +26,14 @@ server.register [
       console.log(" - - - - - - - user agent:")
       console.log(request.headers['user-agent'])
 
-      #should be improved
-      if (!decoded)
-        return callback(null, false)
-      else
+      #should improve
+      if (decoded.exp < new Date().getTime())
         return callback(null, true)
+      else
+        return callback(null, false)
 
     verifyOptions:
-      ignoreExpiration: true
+      ignoreExpiration: false #reject expired tokens
 
   server.auth.default 'jwt'
 
@@ -42,8 +42,6 @@ server.register {
   select: ['api']
 }, (err) ->
   throw err if err
-
-
 
 server.route
   method: 'GET'

@@ -27,6 +27,8 @@ add users config to elasticsearch.yml:
 - couchbase.typeSelector: org.elasticsearch.transport.couchbase.capi.RegexTypeSelector
 - couchbase.typeSelector.documentTypesRegex.users: ^u_[^:]+$
 
+also run mappings according to setup
+
 ## Run 
 - start project automatically :
   $gulp start
@@ -36,6 +38,6 @@ add users config to elasticsearch.yml:
 
 ## Features 
 - see http://localhost:3100/docs (method: GET), for available routes
+-POST /register,will create a user account using name, email and password
 
-
-
+-POST /login will sign the user in using email and password
