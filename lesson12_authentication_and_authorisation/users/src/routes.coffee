@@ -20,5 +20,13 @@ module.exports = (server, options) ->
           mode: 'try'
         validate: Validator.login
         handler: Handler.login
+    },
+    {
+      method: 'GET'
+      path: '/me'
+      config:
+        auth:
+          mode: 'required'
+        handler: Handler.me
     }
   ]

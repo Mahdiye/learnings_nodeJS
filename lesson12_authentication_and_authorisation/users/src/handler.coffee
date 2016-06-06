@@ -35,4 +35,9 @@ module.exports = (server, options) ->
             console.log 'token': token
               .header("Authorization", token)
           else reply "invalid password"
+
+    me: (request, reply) ->
+      User.get( request.auth.credentials.doc_key )
+      .then (me) ->
+        reply email:me.doc.email, name: me.doc.name
   }
