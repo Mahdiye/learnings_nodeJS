@@ -9,4 +9,10 @@ module.exports = (server, options) ->
       post.create(true)
         .then (post) ->
           reply post
+
+    get_by_key: (request, reply) ->
+      key = request.params.post_key
+      Post.get(key)
+        .then (post) ->
+          reply post.doc
   }

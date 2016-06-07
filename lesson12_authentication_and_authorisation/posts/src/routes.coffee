@@ -11,5 +11,15 @@ module.exports = (server, options) ->
         mode: 'required'
       validate: Validator.create
       handler: Handler.create
+    },
+    {
+    method: 'GET',
+    path: '/posts/{post_key}'
+    config:
+      auth:
+        mode: 'optional'
+      validate: Validator.get_by_key
+      handler: Handler.get_by_key
     }
+
   ]
