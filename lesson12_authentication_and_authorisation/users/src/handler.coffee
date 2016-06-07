@@ -1,5 +1,5 @@
 module.exports = (server, options) ->
-  Secret = require('../../api/src/config').default.secret_key
+  Secret = require('../../api/src/config').defaults.secret_key
   User = require('./model.coffee')(server, options)
   JWT = require 'jsonwebtoken' #used to sign our content
 

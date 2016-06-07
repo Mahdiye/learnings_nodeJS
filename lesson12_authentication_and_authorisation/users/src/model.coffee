@@ -1,5 +1,5 @@
 module.exports = (server, options) ->
-  Config = require('../../api/src/config').default
+  Config = require('../../api/src/config').defaults
 
   BaseModel = require('odme').CB
   db= new require('puffer') { host: Config.databases.application.host , name: Config.databases.application.name }
