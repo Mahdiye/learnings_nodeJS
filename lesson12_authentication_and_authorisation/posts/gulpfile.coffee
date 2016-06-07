@@ -1,13 +1,6 @@
 gulp = require 'gulp'
 coffee = require 'gulp-coffee'
 gutil = require 'gulp-util'
-nodemon = require 'gulp-nodemon'
-
-gulp.task 'start', ->
-  nodemon({
-    script: './src/server.coffee'
-    watch: ['./api', '../users', '../posts']
-  })
 
 gulp.task 'build', ->
   return gulp.src('./src/*')

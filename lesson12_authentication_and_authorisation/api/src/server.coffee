@@ -1,11 +1,11 @@
 Hapi = require 'hapi'
 Config = require './config'
-Secret = Config.default.secret_key
+Secret = Config.defaults.secret_key
 
 server = new Hapi.Server()
 
 server.connection
-  port: Config.default.server.api.port
+  port: Config.defaults.server.api.port
   labels: 'api'
 
 server.register [
@@ -37,10 +37,19 @@ server.register [
 
   server.auth.default 'jwt'
 
-server.register {
-  register: require 'lesson12_authentication_and_authorisation.users'
-  select: ['api']
-}, (err) ->
+server.register [
+  {
+    register: require 'lesson12_authentication_and_authorisation.users'
+    select: ['api']
+  },
+  {
+    register: require 'lesson12_authentication_and_authorisation.posts'
+    options:
+      secure_key: Secret
+      defaults: Config.defaults
+    select: ['api']
+  }
+],(err) ->
   throw err if err
 
 server.route

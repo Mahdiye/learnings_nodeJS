@@ -1,5 +1,5 @@
 module.exports =
-  default:
+  defaults:
     server:
       api:
         port: 3100
