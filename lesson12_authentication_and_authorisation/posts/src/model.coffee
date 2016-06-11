@@ -16,11 +16,10 @@ module.exports = (server, options) ->
 
     PREFIX : 'p'
 
-    @get_by_email : (email) ->
+    @list: ->
       client.search
         index: 'lesson12'
-        type: 'users'
+        type: 'posts'
         body:
           query:
-            match:
-              email: email
+            match_all: {}

@@ -14,6 +14,15 @@ module.exports = (server, options) ->
     },
     {
     method: 'GET',
+    path: '/posts'
+    config:
+      auth:
+        mode: 'optional'
+      validate: Validator.list
+      handler: Handler.list
+    },
+    {
+    method: 'GET',
     path: '/posts/{post_key}'
     config:
       auth:
