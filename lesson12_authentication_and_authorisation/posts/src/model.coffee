@@ -16,11 +16,19 @@ module.exports = (server, options) ->
 
     PREFIX : 'p'
 
-    @get_by_email : (email) ->
+    @list: (from=0)->
+      size = 2
       client.search
         index: 'lesson12'
-        type: 'users'
+        type: 'posts'
         body:
+          from: size*from
+          size: size
           query:
-            match:
-              email: email
+            match_all: {}
+          sort: [
+            user_key:
+              order: "asc"
+            name:
+              order: "desc"
+          ]

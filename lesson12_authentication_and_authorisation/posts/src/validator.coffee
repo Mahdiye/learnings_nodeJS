@@ -8,3 +8,7 @@ module.exports =
   get_by_key:
     params:
       post_key: Joi.string().required()
+
+  list:
+    query:
+      from: Joi.number()
