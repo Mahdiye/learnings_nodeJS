@@ -16,13 +16,13 @@ module.exports = (server, options) ->
 
     PREFIX : 'p'
 
-    @list: (from=0)->
+    @list: (page=0)->
       size = 5
       client.search
         index: 'lesson12'
         type: 'posts'
         body:
-          from: size*from
+          from: page*size
           size: size
           query:
             match_all: {}
@@ -32,3 +32,15 @@ module.exports = (server, options) ->
             name:
               order: "desc"
           ]
+
+    @get_by_user_key: (user_key, page=0) ->
+      size = 5
+      client.search
+        index: 'lesson12'
+        type: 'posts'
+        body:
+          from: page*size
+          size: size
+          query:
+            match:
+              user_key: user_key

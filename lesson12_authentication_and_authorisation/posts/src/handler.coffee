@@ -9,11 +9,11 @@ module.exports = (server, options) ->
     create: (request, reply) ->
       post = new Post "p_#{id}:#{request.payload.user_key}", request.payload
       post.create(true)
-        .then (post) ->
-          reply post
+      .then (post) ->
+        reply post
 
     list: (request, reply) ->
-      Post.list(request.query.from)
+      Post.list(request.query.page)
       .then (results) ->
         docs = _.map(results.hits.hits, '_source.doc')
         reply docs
@@ -23,4 +23,13 @@ module.exports = (server, options) ->
       Post.get(key)
         .then (post) ->
           reply post.doc
+
+    list_my_post: (request, reply) ->
+      user_key = request.auth.credentials.doc_key
+      Post.get_by_user_key(user_key, request.query.page)
+      .then (my_posts) ->
+        data = []
+        for result in my_posts.hits.hits
+          data.push result._source.doc
+        reply data
   }

@@ -4,7 +4,7 @@ module.exports = (server, options) ->
 
   return [
     {
-    method: 'POST',
+    method: 'POST'
     path: '/posts'
     config:
       auth:
@@ -13,7 +13,7 @@ module.exports = (server, options) ->
       handler: Handler.create
     },
     {
-    method: 'GET',
+    method: 'GET'
     path: '/posts'
     config:
       auth:
@@ -22,13 +22,21 @@ module.exports = (server, options) ->
       handler: Handler.list
     },
     {
-    method: 'GET',
+    method: 'GET'
     path: '/posts/{post_key}'
     config:
       auth:
         mode: 'optional'
       validate: Validator.get_by_key
       handler: Handler.get_by_key
+    },
+    {
+    method: 'GET'
+    path: '/me/posts'
+    config:
+      auth:
+        mode: 'required'
+      validate: Validator.list_my_post
+      handler: Handler.list_my_post
     }
-
   ]

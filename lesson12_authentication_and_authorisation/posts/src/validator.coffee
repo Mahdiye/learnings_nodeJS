@@ -11,4 +11,8 @@ module.exports =
 
   list:
     query:
-      from: Joi.number()
+      page: Joi.number()
+
+  list_my_post:
+    query:
+      page: Joi.number()
