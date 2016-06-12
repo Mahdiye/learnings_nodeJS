@@ -17,7 +17,7 @@ module.exports = (server, options) ->
     PREFIX : 'p'
 
     @list: (from=0)->
-      size = 2
+      size = 5
       client.search
         index: 'lesson12'
         type: 'posts'
