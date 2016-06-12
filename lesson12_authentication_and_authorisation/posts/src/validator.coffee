@@ -16,3 +16,7 @@ module.exports =
   list_my_post:
     query:
       page: Joi.number()
+
+  delete:
+    params:
+      key: Joi.string().required()

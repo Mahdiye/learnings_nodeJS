@@ -18,6 +18,12 @@ module.exports = (server, options) ->
         docs = _.map(results.hits.hits, '_source.doc')
         reply docs
 
+    list: (request, reply) ->
+      Post.list()
+        .then (results) ->
+          docs = _.map(results.hits.hits, '_source.doc')
+          reply docs
+
     get_by_key: (request, reply) ->
       key = request.params.post_key
       Post.get(key)

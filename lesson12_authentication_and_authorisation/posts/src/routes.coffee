@@ -13,7 +13,7 @@ module.exports = (server, options) ->
       handler: Handler.create
     },
     {
-    method: 'GET'
+    method: 'GET',
     path: '/posts'
     config:
       auth:
@@ -22,7 +22,7 @@ module.exports = (server, options) ->
       handler: Handler.list
     },
     {
-    method: 'GET'
+    method: 'GET',
     path: '/posts/{post_key}'
     config:
       auth:
@@ -45,7 +45,7 @@ module.exports = (server, options) ->
     config:
       auth:
         mode: 'required'
-      #validate: Validator.list_my_post
+      validate: Validator.delete
       handler: Handler.delete
     }
 
