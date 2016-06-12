@@ -32,4 +32,11 @@ module.exports = (server, options) ->
         for result in my_posts.hits.hits
           data.push result._source.doc
         reply data
+    
+    delete:(request, reply) ->
+      if  (request.params.key).split(":")[1] is  request.auth.credentials.doc_key
+        Post.remove(request.params.key)
+        .then (result) ->
+          reply result
+      else reply "just delete your own post"
   }

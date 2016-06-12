@@ -38,5 +38,15 @@ module.exports = (server, options) ->
         mode: 'required'
       validate: Validator.list_my_post
       handler: Handler.list_my_post
+    },
+    {
+    method: 'DELETE'
+    path: '/me/posts/{key}'
+    config:
+      auth:
+        mode: 'required'
+      #validate: Validator.list_my_post
+      handler: Handler.delete
     }
+
   ]
