@@ -47,6 +47,14 @@ module.exports = (server, options) ->
         mode: 'required'
       validate: Validator.delete
       handler: Handler.delete
+    },
+    {
+    method: 'PUT'
+    path: '/me/posts/{key}'
+    config:
+      auth:
+        mode: 'required'
+      validate: Validator.update
+      handler: Handler.update
     }
-
   ]

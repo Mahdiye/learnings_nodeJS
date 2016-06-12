@@ -45,4 +45,13 @@ module.exports = (server, options) ->
         .then (result) ->
           reply result
       else reply "just delete your own post"
+
+    update: (request, reply) ->
+      if  (request.params.key).split(":")[1] is  request.auth.credentials.doc_key
+        post = new Post request.params.key, request.payload
+        post.update(true)
+        .then (result) ->
+          reply result
+      else reply "just update your own post"
+
   }

@@ -20,3 +20,10 @@ module.exports =
   delete:
     params:
       key: Joi.string().required()
+
+  update:
+    params:
+      key: Joi.string().required()
+    payload:
+      name: Joi.string()
+      user_key: Joi.string()
