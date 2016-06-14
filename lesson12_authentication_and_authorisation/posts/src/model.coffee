@@ -1,3 +1,5 @@
+_ = require 'lodash'
+
 module.exports = (server, options) ->
   Defaults = options.defaults
 
@@ -32,6 +34,18 @@ module.exports = (server, options) ->
             name:
               order: "desc"
           ]
+      .then (results) ->
+        posts = []
+        user_keys = []
+        for keys in results.hits.hits
+          user_keys.push keys._source.doc.user_key
+          posts.push keys._source.doc
+
+        server.methods.user.find user_keys, (err, users) ->
+          users.then (docs) ->
+            docs
+
+          _.merge(posts,users)
 
     @get_by_user_key: (user_key, page=0) ->
       size = 5

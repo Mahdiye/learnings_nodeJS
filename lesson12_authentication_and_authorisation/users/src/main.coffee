@@ -3,6 +3,7 @@ routes = require './routes'
 exports.register = ( server, options, next) ->
   server = server.select 'api'
   server.route require('./routes') server, options
+  require('./methods') server, options
   next()
 
 exports.register.attributes =

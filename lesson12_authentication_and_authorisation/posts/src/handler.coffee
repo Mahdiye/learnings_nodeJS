@@ -1,4 +1,4 @@
-_ = require 'lodash'
+ = require 'lodash'
 id = require('shortid').generate()
 
 module.exports = (server, options) ->
@@ -15,14 +15,7 @@ module.exports = (server, options) ->
     list: (request, reply) ->
       Post.list(request.query.page)
       .then (results) ->
-        docs = _.map(results.hits.hits, '_source.doc')
-        reply docs
-
-    list: (request, reply) ->
-      Post.list()
-        .then (results) ->
-          docs = _.map(results.hits.hits, '_source.doc')
-          reply docs
+        reply results
 
     get_by_key: (request, reply) ->
       key = request.params.post_key
@@ -53,5 +46,4 @@ module.exports = (server, options) ->
         .then (result) ->
           reply result
       else reply "just update your own post"
-
   }
