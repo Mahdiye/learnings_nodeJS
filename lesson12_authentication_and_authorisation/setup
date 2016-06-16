@@ -1,12 +1,24 @@
 #for register :
 #PUT lesson12
-{
-  "mappings": {
-    "users":{
+{ 
+  "mappings": { 
+    "users":{ 
+      "properties": { 
+        "doc":{ 
+          "properties": { 
+            "email":{ 
+              "type": "string", 
+              "index": "not_analyzed" 
+            } 
+          } 
+        } 
+      } 
+    },
+    "posts": {
       "properties": {
         "doc":{
           "properties": {
-            "email":{
+            "user_key": {
               "type": "string",
               "index": "not_analyzed"
             }
@@ -15,5 +27,4 @@
       }
     }
   }
-}
-  
+} 
