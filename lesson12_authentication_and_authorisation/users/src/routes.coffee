@@ -7,8 +7,7 @@ module.exports = (server, options) ->
     method: 'POST',
     path: '/register'
     config:
-      auth:
-        mode: 'try'
+      auth: false
       validate: Validator.register
       handler: Handler.register
     },

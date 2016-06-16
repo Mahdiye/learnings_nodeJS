@@ -1,3 +1,4 @@
+Boom = require 'boom'
 module.exports = (server, options) ->
   Secret = require('../../api/src/config').defaults.secret_key
   User = require('./model.coffee')(server, options)
@@ -8,7 +9,7 @@ module.exports = (server, options) ->
       User.get_by_email (request.payload.email)
       .then (result) ->
         if (result.hits.total) >= 1
-          return reply "Email already exist"
+          return reply Boom.conflict("Email already exist")
         else
           user = new User request.payload
           user.create(true)
@@ -19,11 +20,10 @@ module.exports = (server, options) ->
       User.get_by_email (request.payload.email)
       .then (result) ->
         if (result.hits.total) is 0
-          reply "invalid email"
+          reply Boom.badRequest "Invalid email"
         else
           doc = result.hits.hits[0]._source.doc
           if doc.email is request.payload.email and doc.password is request.payload.password
-            reply "logged in"
             #use the token as the 'authorization' header in requests
             options =
               expiresIn: "7d"
@@ -33,8 +33,9 @@ module.exports = (server, options) ->
               doc_key: doc.doc_key
             token = JWT.sign(payload, Secret, options) #synchronous
             console.log 'token': token
-              .header("Authorization", token)
-          else reply "invalid password"
+            reply ('logged in')
+              .header('Authorization', token)
+          else reply Boom.badRequest "Wrong password"
 
     me: (request, reply) ->
       User.get( request.auth.credentials.doc_key )
