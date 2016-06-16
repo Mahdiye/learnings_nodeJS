@@ -1,4 +1,4 @@
- = require 'lodash'
+_ = require 'lodash'
 id = require('shortid').generate()
 
 module.exports = (server, options) ->
