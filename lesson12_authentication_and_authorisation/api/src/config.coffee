@@ -2,6 +2,7 @@ module.exports =
   defaults:
     server:
       api:
+        host: 'http://localhost'
         port: 3100
     databases:
         application:
