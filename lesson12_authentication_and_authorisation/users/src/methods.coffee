@@ -1,4 +1,4 @@
 module.exports = (server, options) ->
   User = require('../../users/src/model') server, options
-  server.method 'user.find', (keys, next) ->
-    next null, User.find(keys)
+  server.method 'user.find', (keys) ->
+    User.find(keys)

@@ -14,6 +14,7 @@ module.exports = (server, options) ->
       email: on
       password: on
       name: on
+      is_valid: off
 
     PREFIX : 'u'
 

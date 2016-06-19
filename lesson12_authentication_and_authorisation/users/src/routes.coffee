@@ -27,5 +27,11 @@ module.exports = (server, options) ->
         auth:
           mode: 'required'
         handler: Handler.me
+    },
+    {
+      method: 'POST'
+      path: '/logout'
+      config:
+        handler: Handler.logout
     }
   ]
