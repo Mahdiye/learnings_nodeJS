@@ -7,15 +7,14 @@ module.exports = (server, options) ->
 
   return {
     create: (request, reply) ->
-      post = new Post "p_#{id}:#{request.payload.user_key}", request.payload
+      post = new Post "p_#{id}:#{request.auth.credentials.doc_key}", request.payload
+      post.doc.user_key = request.auth.credentials.doc_key
       post.create(true)
       .then (post) ->
         reply post
 
-    list: (request, reply) ->
-      Post.list(request.query.page)
-      .then (results) ->
-        reply results
+    list_all: (request, reply) ->
+      reply Post.list_all(request.query.page)
 
     get_by_key: (request, reply) ->
       key = request.params.post_key

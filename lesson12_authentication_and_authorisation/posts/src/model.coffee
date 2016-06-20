@@ -14,11 +14,11 @@ module.exports = (server, options) ->
     source: db
     props:
       name: on
-      user_key: on
+      user_key: off
 
     PREFIX : 'p'
 
-    @list: (page=0)->
+    @list_all: (page=0)->
       size = 5
       client.search
         index: 'lesson12'
@@ -35,17 +35,22 @@ module.exports = (server, options) ->
               order: "desc"
           ]
       .then (results) ->
-        posts = []
+        blogs = []
         user_keys = []
         for keys in results.hits.hits
           user_keys.push keys._source.doc.user_key
-          posts.push keys._source.doc
+          blogs.push keys._source.doc
 
-        server.methods.user.find user_keys, (err, users) ->
-          users.then (docs) ->
-            docs
+        server.methods.user.find _.uniq user_keys
+          .then (user_details) ->
+            user_details
+            details = []
+            for user in user_details
+              for blog in blogs
+                if user.doc_key is blog.user_key
+                  details.push _.concat(blog,user)
 
-          _.merge(posts,users)
+            return details
 
     @get_by_user_key: (user_key, page=0) ->
       size = 5

@@ -19,7 +19,7 @@ module.exports = (server, options) ->
       auth:
         mode: 'optional'
       validate: Validator.list
-      handler: Handler.list
+      handler: Handler.list_all
     },
     {
     method: 'GET',
