@@ -22,6 +22,13 @@ new_user_info =
 
 
 context 'User', ->
+  before (done) ->
+    chai.request(URL)
+      .post('/register')
+      .send(existing_user_info)
+       .end (err, res) ->
+         done()
+    
   describe 'login progress', ->
     it 'should not register with an existing email', (done) ->
       chai.request(URL)
@@ -52,12 +59,12 @@ context 'User', ->
           res.text.should.contain "logged in"
           done()
 
-    it 'should inot login with wrong password', (done) ->
+    it 'should not login with wrong password', (done) ->
       chai.request(URL)
         .post('/login')
         .send(email: login_info.email, password: '123456abc')
         .end (err, res) ->
-          res.should.have.status 400
+          res.should.have.status 401
           res.text.should.contain "Wrong password"
           done()
 
@@ -66,7 +73,7 @@ context 'User', ->
         .post('/login')
         .send(email: new_user_info.email, password: login_info.password)
         .end (err, res) ->
-          res.should.have.status 400
+          res.should.have.status 401
           res.text.should.contain "Invalid email"
           done()
 
@@ -77,7 +84,7 @@ context 'User', ->
           res.should.have.status 401
           done()
           
-    it 'should get detail of the a user', ->
+    it 'should get detail of the user', ->
       chai.request(URL)
         .post('/login')
         .send(login_info)
