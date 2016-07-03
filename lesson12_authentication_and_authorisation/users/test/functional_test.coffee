@@ -20,16 +20,15 @@ new_user_info =
   password: 'abc123456'
   name: 'Mahdieh'
 
-
 context 'User', ->
-  before (done) ->
-    chai.request(URL)
-      .post('/register')
-      .send(existing_user_info)
-       .end (err, res) ->
-         done()
-    
   describe 'login progress', ->
+    before (done) ->
+      chai.request(URL)
+        .post('/register')
+        .send(existing_user_info)
+         .end (err, res) ->
+           done()
+
     it 'should not register with an existing email', (done) ->
       chai.request(URL)
         .post('/register')
