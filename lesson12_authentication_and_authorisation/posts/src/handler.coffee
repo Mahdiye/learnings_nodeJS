@@ -1,3 +1,4 @@
+Boom = require 'boom'
 _ = require 'lodash'
 id = require('shortid').generate()
 
@@ -36,7 +37,7 @@ module.exports = (server, options) ->
         Post.remove(request.params.key)
         .then (result) ->
           reply result
-      else reply "just delete your own post"
+      else reply Boom.badRequest "just delete your own post"
 
     update: (request, reply) ->
       if  (request.params.key).split(":")[1] is  request.auth.credentials.doc_key

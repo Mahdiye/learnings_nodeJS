@@ -19,6 +19,8 @@ module.exports = (server, options) ->
     login: (request, reply) ->
       User.get_by_email (request.payload.email)
       .then (result) ->
+        console.log result.hits
+
         if (result.hits.total) is 0
           reply Boom.unauthorized "Invalid email"
         else
@@ -48,7 +50,7 @@ module.exports = (server, options) ->
       User.get( request.auth.credentials.doc_key )
       .then (me) ->
         if me.doc.is_valid
-          reply email:me.doc.email, name: me.doc.name
+          reply email:me.doc.email, name: me.doc.name, user_key: me.doc.doc_key
         else reply Boom.unauthorized "Login first"
 
     logout: (request, reply) ->
